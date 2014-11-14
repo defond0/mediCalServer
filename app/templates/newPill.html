@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Pill</h1>
+<body>
+	<form action="" method="post" name="newpill">
+		{{ form.hidden_tag() }}
+		<p>
+	   	Pill Name: <br>
+	   	{{ form.name }} <br>
+	   	Tube #: <br>
+	   	{{ form.tube }} <br>
+	   	Dosage: <br>
+	   	{{ form.dose }} <br>
+	   	# of Pills <br>
+	   	{{ form.load }} <br>
+		</p>
+	<p><input type = "submit" value = "Create Pill"></p>
+	</form>
+</body>
+{% endblock %}
