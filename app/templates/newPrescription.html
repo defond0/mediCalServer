@@ -1,17 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add Prescription</h1>
-<body>
-	<form action="" method="post" name="newprescription">
-		{{ form.hidden_tag() }}
-		<p>
-	   	Patient Name: <br>
-	   	{{ form.patient }} <br>
-	   	RFID Tag #: <br>
-	   	{{ form.rfid }} <br>
-		</p>
-	<p><input type = "submit" value = "Create Prescription"></p>
-	</form>
-</body>
+ <form action="" method="post" name="newprescription">
+      {{ form.hidden_tag() }}
+      <p>
+          Patient name:<br>
+          {{ form.patient(size=64) }}<br>
+          RFID tag #:<br>
+          {{ form.rfid }}<br>
+      </p>
+      <p><input type="submit" value="Create Prescription"></p>
+ </form>
 {% endblock %}

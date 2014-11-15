@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add Pills to Prescription</h1>
-<body>
-	<form action="" method="post" name="addpills">
-		{{ form.hidden_tag() }}
-		<p>
-	   	Patient Name: <br>
-	   	{{ form.perscriptions }} <br>
-	   	Pill: <br>
-	   	{{ form.pills }} <br>
-	   	Times: <br>
-	   	{{ form.time }}<br>
-		</p>
-	<p><input type = "submit" value = "Add Pills"></p>
-	</form>
-</body>
+ <form action="/addpills" method="post" name="addpills">
+      {{ form.hidden_tag() }}
+          Perscription:<br>
+          {{ form.prescriptions }}<br>
+          Pills:<br>
+          {{ form.pills }}<br>
+          Time:<br>
+          {{ form.times}}<br>
+      <p><input type="submit" value="Schedule"></p>
+  </form>
 {% endblock %}

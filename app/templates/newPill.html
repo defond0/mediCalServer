@@ -1,21 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add Pill</h1>
-<body>
-	<form action="" method="post" name="newpill">
-		{{ form.hidden_tag() }}
-		<p>
-	   	Pill Name: <br>
-	   	{{ form.name }} <br>
-	   	Tube #: <br>
-	   	{{ form.tube }} <br>
-	   	Dosage: <br>
-	   	{{ form.dose }} <br>
-	   	# of Pills <br>
-	   	{{ form.load }} <br>
-		</p>
-	<p><input type = "submit" value = "Create Pill"></p>
-	</form>
-</body>
+ <form action="" method="post" name="newpill">
+      {{ form.hidden_tag() }}
+      <p>
+          Pill name:<br>
+          {{ form.name(size=64) }}<br>
+          Tube:<br>
+          {{ form.tube(size=64) }}<br>
+          Dose:<br>
+          {{ form.dose(size=64) }}<br>
+          Number of Pills:<br>
+          {{ form.load(size=64) }}<br>
+      </p>
+      <p><input type="submit" value="Create Pill"></p>
+ </form>
 {% endblock %}

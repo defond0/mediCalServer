@@ -3,6 +3,15 @@ from wtforms import StringField, SelectField, DateTimeField
 from wtforms.validators import DataRequired
 from app import app, models 
 
+class SelectPrescriptions(SelectField):
+	def __init__(self, *args, **kwargs):
+		super(SelectPrescriptions, self).__init__(*args, **kwargs)
+		self.choices=[(prescription.id,prescription.patient)for prescription in models.Prescription.query.all()] 
+
+class SelectPills(SelectField):
+	def __init__(self, *args, **kwargs):
+		super(SelectPills, self).__init__(*args, **kwargs)
+		self.choices=[(pill.id,pill.name)for pill in models.Pill.query.all()] 
 	
 class pillForm(Form):
 	tube = StringField('tube', validators=[DataRequired()])
@@ -10,19 +19,15 @@ class pillForm(Form):
 	dose = StringField('dose', validators=[DataRequired()])
 	load = StringField('load', validators=[DataRequired()])
 
+
 class prescriptionForm(Form):
 	patient = StringField('patient', validators=[DataRequired()])
 	rfid = SelectField('rfid', validators=[DataRequired()], choices=[('1','1'),('2','2')])
 
 class addPillsForm(Form):
-	perscriptions = SelectField('perscripts', choices = [])
-	pills = SelectField('pills', choices =[])
-	time = DateTimeField('times', validators=[DataRequired()], format ='%H:%M')
+	prescriptions = SelectPrescriptions('prescriptions', validators=[DataRequired()])
+	pills = SelectPills('pills', validators=[DataRequired()])
+	times = StringField('times', validators=[DataRequired()])
 
-	def loadSpinners(self):
-		pill = models.Pill.query.all()
-		perscripts = models.Prescription.query.all()
-		self.perscriptions.choices = [(p.id, p.patient) for p in perscripts]
-		self.pills.choices = [(p.id, p.name) for p in pill]
-
+	
 

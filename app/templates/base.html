@@ -1,9 +1,15 @@
 <html>
+<html>
   <head>
-    <title> Medical Pillar</title>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Medical Pillar</title>
+    {% endif %}
   </head>
   <body>
-  	 {% with messages = get_flashed_messages() %}
+  	<h1>{{ title }}</h1>
+  	{% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul>
         {% for message in messages %}
@@ -12,6 +18,11 @@
         </ul>
       {% endif %}
     {% endwith %}
-  	{% block content %}{% endblock %}
+    {% block content %}{% endblock %}<br>
+    <br>
+    <br>
+    <a href="/index">Index</a><br><a href="/newpill">Add Pill</a><br><a href="/newprescription">Add Prescription</a><br><a href="/addpills"> Schedule Prescriptions</a><br>
   </body>
+</html>
+
 </html>

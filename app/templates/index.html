@@ -1,14 +1,36 @@
 {% extends "base.html" %}
-
 {% block content %}
-  <body>
-    <h1>Pills</h1>
-    {% for pill in pills %}
-    <div><p>{{pill.name}} </p>
-    {% endfor %}
-    <h1>Prescriptions</h1>
+    <h2>Perscriptions</h2>
+    <div>
     {% for prescription in prescriptions %}
-    <div><p>{{prescription.patient}} </p>
+    	<tr>
+    		<td> Name {{ prescription.patient }}, </td>
+    		<td> Rfid # {{ prescription.rfid }}, </td>
+    		<td> Id {{prescription.id}}</td>
+    	</tr><br>
     {% endfor %}
-  </body>
+    </div>
+    <h2>Pills</h2>
+    <div>
+    {% for pill in pills %}	
+    	<tr>
+    		<td>Name {{ pill.name }}, </td>
+    		<td>Tube {{ pill.tube }}, </td>
+    		<td>Dose {{ pill.dose }}, </td>
+    		<td>Load {{ pill.load }}, </td>
+    		<td>Id {{ pill.id }}</td>
+    	</tr><br>
+    {% endfor %}
+    </div>
+    <h2>Times</h2>
+    <div>
+    {% for join in joins %}
+    	<tr>
+    		<td>PillId {{ join.pillId }}, </td>
+    		<td>PrescriptionId {{ join.prescriptionId }}, </td>
+    		<td>Time {{ join.times }}, </td>
+    		<td>Id {{ join.id }}</td>
+    	</tr>
+    {% endfor %}
+    </div>
 {% endblock %}

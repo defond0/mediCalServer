@@ -1,5 +1,6 @@
 from app import db
 
+
 class Pill(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	tube = db.Column(db.String(64), index = True)
@@ -12,6 +13,7 @@ class Pill(db.Model):
 		p = Pill(tube=tube,name=name,dose= dose, load=load)
 		db.session.add(p)
 		db.session.commit()
+		return p 
 
 class Prescription(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
@@ -23,20 +25,20 @@ class Prescription(db.Model):
 		rfids={'1':bytes([0x1A, 0xE2, 0x41,0xD9]),'2':bytes([0x04, 0x92, 0x6E, 0x7A, 0x7A, 0x31, 0x80])}
 		p = Prescription(patient=patient,rfid = rfids[rfid])
 		db.session.add(p)
-		db.session.commit()		
-
-
+		db.session.commit()
+		return p 		
 
 class PPjoin(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	pillId = db.Column(db.Integer, db.ForeignKey('prescription.id'))
-	prescriptioinId = db.Column(db.Integer, db.ForeignKey('prescription.id'))
+	prescriptionId = db.Column(db.Integer, db.ForeignKey('prescription.id'))
 	times = db.Column(db.String(120), index = True)
 
 	@staticmethod
-	def createJoin(pillid, perscriptionId, times):
-		j = PPjoin(pillid=pillid, perscriptionId=perscriptionId, times=times)
+	def createJoin(pillId, perscriptionId, times ):
+		j = PPjoin(pillId=pillId, prescriptionId=perscriptionId, times=times)
 		db.session.add(j)
 		db.session.commit()
+		return j 
 
-	
+
